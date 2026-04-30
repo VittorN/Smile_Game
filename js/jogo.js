@@ -30,7 +30,7 @@
       //percorremos todas as divs armazenadas
       for (i = 0; i < divis.length; i++) {
         //verificamos se sao as divs com ids 0 ou 1 ou 2
-        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2) {
+        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2 || divis[i].id == 3 || divis[i].id == 4 || divis[i].id == 5) {
           //alteramos a classe css das divs 0, 1 e 2 (className)
           divis[i].className = "inicial";
         }
@@ -50,7 +50,7 @@
       //calcula o desempenho em porcentagem
       desempenho = (acertos / tentativas) * 100;
       //escreve o placar com os valores atualizados (innerHTML)
-      document.getElementById("resposta").innerHTML = "Placar - Acertos: " + acertos + " Tentativas: " + tentativas + " Desempenho: " + Math.round(desempenho) + "%";
+      document.getElementById("resposta").innerHTML = "Placar: \nAcertos: " + acertos + " Tentativas: " + tentativas + " Desempenho: " + Math.round(desempenho) + "%";
 
     }
 
@@ -76,14 +76,14 @@
         //incrementa as tentativas
         tentativas++;
         //verifica se jogou 3 vezes
-        if (tentativas == 3) {
+        if (tentativas >= 3) {
           //oculta o botao joganovamente alterando a classe css (getElementById e className)
           btnJogarNovamente.className = 'invisivel';
           //mostra o botao reiniciar alterando a classe css (getElementById e className)
           btnReiniciar.className = 'visivel';
         }
         //a variável sorteado recebe um valor inteiro (Math.floor) aleatório (Math.random)
-        let sorteado = Math.floor(Math.random() * 3);
+        let sorteado = Math.floor(Math.random() * 6);
         //se o id da <div> escolhida pelo jogador for igual ao número sorteado
         if (obj.id == sorteado) {
           //chama a funçao acertou passando a div escolhida pelo jogador
@@ -108,3 +108,30 @@
 //adiciona eventos aos botões
 btnJogarNovamente.addEventListener('click', jogarNovamente);
 btnReiniciar.addEventListener('click', reiniciar);
+
+//Adição de Teclado
+
+document.addEventListener('keydown', function (event) {
+  const tecla = event.key;
+
+  //cartas (1, 2, 3)
+  if (tecla === '1' || tecla === '2' || tecla === '3' || tecla === '4' || tecla === '5' || tecla === '6') {
+    //converte tecla para id (1→0, 2→1, 3→2)
+    const id = parseInt(tecla) - 1;
+    const carta = document.getElementById(id);
+
+    if (carta) {
+      verifica(carta);
+    }
+  }
+
+  //tecla Enter → Jogar Novamente
+  if (tecla === 'Enter' & btnJogarNovamente.className == 'visivel') {
+    jogarNovamente();
+  }
+
+  //tecla 0 → Reiniciar
+  if (tecla === '0' & btnReiniciar.className == 'visivel') {
+    reiniciar();
+  }
+});
