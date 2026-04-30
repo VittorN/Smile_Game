@@ -110,13 +110,12 @@ btnJogarNovamente.addEventListener('click', jogarNovamente);
 btnReiniciar.addEventListener('click', reiniciar);
 
 //Adição de Teclado
-
 document.addEventListener('keydown', function (event) {
   const tecla = event.key;
 
-  //cartas (1, 2, 3)
+  //cartas
   if (tecla === '1' || tecla === '2' || tecla === '3' || tecla === '4' || tecla === '5' || tecla === '6') {
-    //converte tecla para id (1→0, 2→1, 3→2)
+    //converte tecla para id
     const id = parseInt(tecla) - 1;
     const carta = document.getElementById(id);
 
