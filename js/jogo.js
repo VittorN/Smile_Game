@@ -37,12 +37,8 @@
       }
 
       //armazenamos a imagem do Smile na variável imagem (getElementById)
-      let imagem = document.getElementById("imagem");
-      //se a imagem nao for vazia (se ela existir)
-      if (imagem != "") {
-        //removemos a imagem do Smile
-        imagem.remove();
-      }
+      document.getElementById("imagem").remove();
+      document.getElementById("imagem2").remove();
     }
 
     //funçao que atualiza o placar
@@ -97,6 +93,11 @@
           const objSorteado = document.getElementById(sorteado);
           //chama a funçao acertou para mostrar a div aonde está o Smile
           acertou(objSorteado);
+
+          const img = new Image(100);
+          img.id = "imagem2";
+          img.src = "https://static.wikia.nocookie.net/emoji-fanon/images/a/ad/Very_Distorted_Face_%28X_version%29.png/revision/latest/scale-to-width/360?cb=20251107101448";
+          obj.appendChild(img);
         }
         //chama a funçao que atualiza o placar
         atualizaPlacar(acertos, tentativas);
